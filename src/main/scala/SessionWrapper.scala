@@ -1,5 +1,4 @@
 package com.mainDir
-package readers
 
 import org.apache.spark.sql.SparkSession
 
