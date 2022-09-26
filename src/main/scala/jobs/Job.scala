@@ -3,7 +3,8 @@ package jobs
 
 import schemas.Schema
 import readers.{CsvReader, InPathCsv}
-import transformers.{Top10AirlineNoDelay, Top10Airport, AirportTop10AirlinesAndDestinationAirport}
+import transformers.{AirportTop10AirlinesAndDestinationAirport, CountFlightReasonDelay,
+  ProportionOfDelay, Top10AirlineNoDelay, Top10Airport, TopDayOfWeekNoDelay}
 
 object Job extends App with InPathCsv with Schema {
   lazy val airlinesDF = CsvReader.read(airlinesPath, Airport)
@@ -20,7 +21,17 @@ object Job extends App with InPathCsv with Schema {
 
     val topAirlinesNoDelay = flightsDF.transform(Top10AirlineNoDelay.begin)
 //    topAirlinesNoDelay.show()
+
     val airportTop10AirlinesAndOutAirport = flightsDF.transform(AirportTop10AirlinesAndDestinationAirport.begin)
-    airportTop10AirlinesAndOutAirport.show()
+//    airportTop10AirlinesAndOutAirport.show()
+
+    val topDayOfWeekNoDelay = flightsDF.transform(TopDayOfWeekNoDelay.begin)
+//    topDayOfWeekNoDelay.show()
+
+    val countFlightReasonDelay = CountFlightReasonDelay.begin(flightsDF)
+//    println(s"count Flight Reason Delay = $countFlightReasonDelay")
+
+    val proportionOfDelay = flightsDF.transform(ProportionOfDelay.begin)
+    proportionOfDelay.show()
   }
 }
