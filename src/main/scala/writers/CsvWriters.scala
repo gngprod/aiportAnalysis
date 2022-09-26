@@ -1,7 +1,7 @@
-package com.mainDir
+package com.example
 package writers
 
-import com.mainDir.SessionWrapper
+import com.example.SessionWrapper
 import org.apache.spark.sql.{DataFrame, SaveMode}
 
 object CsvWriters extends App with SessionWrapper with OutPathCsv {

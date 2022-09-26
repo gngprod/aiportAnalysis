@@ -1,4 +1,4 @@
-package com.mainDir
+package com.example
 package writers
 
 trait OutPathCsv {

@@ -1,4 +1,4 @@
-package com.mainDir
+package com.example
 package schemas
 
 import org.apache.spark.sql.types._

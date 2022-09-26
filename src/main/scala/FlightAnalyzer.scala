@@ -1,9 +1,9 @@
-package com.mainDir
+package com.example
 
 import jobs.Job
 import org.apache.log4j.{Level, Logger}
 
-object Main extends App {
+object FlightAnalyzer extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
 
   Job.run()

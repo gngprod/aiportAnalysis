@@ -10,4 +10,4 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % sparkVersion
 )
 
-SettingKey[Option[String]]("ide-package-prefix") := Option("com.mainDir")
+SettingKey[Option[String]]("ide-package-prefix") := Option("com.example")

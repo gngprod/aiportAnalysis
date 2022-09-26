@@ -1,4 +1,4 @@
-package com.mainDir
+package com.example
 
 import org.apache.spark.sql.SparkSession
 

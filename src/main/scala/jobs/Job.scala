@@ -1,9 +1,9 @@
-package com.mainDir
+package com.example
 package jobs
 
 import schemas.Schema
 import readers.{CsvReader, InPathCsv}
-import transformers.{Top10AirlineNoDelay, Top10Airport}
+import transformers.{Top10AirlineNoDelay, Top10Airport, AirportTop10AirlinesAndDestinationAirport}
 
 object Job extends App with InPathCsv with Schema {
   lazy val airlinesDF = CsvReader.read(airlinesPath, Airport)
@@ -19,6 +19,8 @@ object Job extends App with InPathCsv with Schema {
 //    topAirports.show()
 
     val topAirlinesNoDelay = flightsDF.transform(Top10AirlineNoDelay.begin)
-    topAirlinesNoDelay.show()
+//    topAirlinesNoDelay.show()
+    val airportTop10AirlinesAndOutAirport = flightsDF.transform(AirportTop10AirlinesAndDestinationAirport.begin)
+    airportTop10AirlinesAndOutAirport.show()
   }
 }
