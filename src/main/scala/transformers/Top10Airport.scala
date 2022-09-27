@@ -6,6 +6,7 @@ import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
 
 object Top10Airport {
+
   def begin(df: DataFrame): DataFrame = {
     val topAirportDF =
       df.select(col("ORIGIN_AIRPORT").as("AIRPORT"))
@@ -15,6 +16,7 @@ object Top10Airport {
         .limit(10)
         .withColumn("top", row_number.over(Window.orderBy(col("count").desc)))
         .select("top", "AIRPORT", "count")
+
     topAirportDF
   }
 }

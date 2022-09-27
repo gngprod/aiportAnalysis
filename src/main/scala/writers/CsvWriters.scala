@@ -1,12 +1,13 @@
 package com.example
 package writers
 
-import com.example.SessionWrapper
+import paths.PathsCsv
 import org.apache.spark.sql.{DataFrame, SaveMode}
 
-object CsvWriters extends App with SessionWrapper with OutPathCsv {
-  def write(df: DataFrame, nameFile: String, separator: Char = ',', hasHeader: Boolean = true): Unit =
+object CsvWriters extends PathsCsv {
+
+  def write(df: DataFrame, nameFile: String): Unit =
     df.write
     .mode(SaveMode.Overwrite)
-    .save(OutPath + s"/$nameFile.csv")
+    .save(OutPath + nameFile + ".csv")
 }

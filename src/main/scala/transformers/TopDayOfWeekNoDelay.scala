@@ -4,7 +4,7 @@ package transformers
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions._
 
-object TopDayOfWeekNoDelay extends App {
+object TopDayOfWeekNoDelay {
 
   def begin(df: DataFrame): DataFrame = {
     val topDayOfWeekNoDelayDF = df
@@ -12,6 +12,7 @@ object TopDayOfWeekNoDelay extends App {
       .groupBy("DAY_OF_WEEK").avg("ARRIVAL_DELAY")
       .select(col("DAY_OF_WEEK"), round(col("avg(ARRIVAL_DELAY)"), 2).as("AVG_ARRIVAL_DELAY"))
       .orderBy("AVG_ARRIVAL_DELAY")
+
     topDayOfWeekNoDelayDF
   }
 }

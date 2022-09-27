@@ -5,7 +5,7 @@ import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
 
-object AirportTop10AirlinesAndDestinationAirport extends App {
+object AirportTop10AirlinesAndDestinationAirport {
 
   def topAirline(df: DataFrame): DataFrame = {
     val topAirlineDF: DataFrame = df.filter(col("DEPARTURE_DELAY") <= 0)
@@ -31,6 +31,7 @@ object AirportTop10AirlinesAndDestinationAirport extends App {
 
   def begin(df: DataFrame): DataFrame = {
     val topAirlineDF = topAirline(df)
+
     val topDestinationAirportDF = topDestinationAirport(df)
 
     val joinOn = topAirlineDF.col("ORIGIN_AIRPORT") === topDestinationAirportDF.col("ORIGIN_AIRPORT") and
@@ -44,6 +45,7 @@ object AirportTop10AirlinesAndDestinationAirport extends App {
         col("AIRLINE"),
         col("DESTINATION_AIRPORT"))
 //      .filter(col("ORIGIN_AIRPORT") === "LAX")
+
     topAirlineAndDestinationAirportDF
   }
 }

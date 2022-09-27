@@ -4,13 +4,13 @@ package schemas
 import org.apache.spark.sql.types._
 
 trait Schema {
-  val Airport: StructType =
+  val AirportSchema: StructType =
     StructType(Seq(
     StructField("IATA_CODE", StringType),
     StructField("AIRLINE", StringType)
     ))
 
-  val Airline: StructType =
+  val AirlineSchema: StructType =
     StructType(Seq(
       StructField("IATA_CODE", StringType),
       StructField("AIRPORT", StringType),
@@ -21,11 +21,11 @@ trait Schema {
       StructField("LONGITUDE", DoubleType)
     ))
 
-  val Flight: StructType =
+  val FlightSchema: StructType =
     StructType(Seq(
       StructField("YEAR", IntegerType),
       StructField("MONTH", IntegerType),
-      StructField("DAY", StringType),
+      StructField("DAY", IntegerType),
       StructField("DAY_OF_WEEK", IntegerType),
       StructField("AIRLINE", StringType),
       StructField("FLIGHT_NUMBER", IntegerType),
@@ -54,6 +54,11 @@ trait Schema {
       StructField("AIRLINE_DELAY", StringType),
       StructField("LATE_AIRCRAFT_DELAY", StringType),
       StructField("WEATHER_DELAY", StringType)
+    ))
+  val MetaDataSchema: StructType =
+    StructType(Seq(
+      StructField("collected", StringType),
+      StructField("processed", StringType)
     ))
 }
 

@@ -4,7 +4,7 @@ package transformers
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions._
 
-object CountFlightReasonDelay extends App {
+object CountFlightReasonDelay {
 
   def begin(df: DataFrame): Long = {
     val countFlightReasonDelayDF = df
@@ -16,6 +16,7 @@ object CountFlightReasonDelay extends App {
           col("LATE_AIRCRAFT_DELAY") > 0 or
           col("WEATHER_DELAY") > 0)
       .count()
+
     countFlightReasonDelayDF
   }
 }

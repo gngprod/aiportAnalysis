@@ -4,7 +4,7 @@ package transformers
 import org.apache.spark.sql.{Column, DataFrame}
 import org.apache.spark.sql.functions._
 
-object ProportionOfDelay extends App {
+object ProportionOfDelay {
 
   def calculationSumDelay(df: DataFrame): Any = {
     val sumDelay = df
@@ -14,6 +14,7 @@ object ProportionOfDelay extends App {
         sum("AIRLINE_DELAY") +
         sum("LATE_AIRCRAFT_DELAY") +
         sum("WEATHER_DELAY")).as("SUM_DELAY"))
+
     sumDelay.collect()(0)(0)
   }
 
@@ -24,6 +25,7 @@ object ProportionOfDelay extends App {
   def begin(df: DataFrame): DataFrame = {
     val sumDelay: Any = calculationSumDelay(df)
 //    println(sumDelay)
+
     val proportionOfDelayDF = df
       .select(
         calculationProportion(col("AIR_SYSTEM_DELAY"), sumDelay),
@@ -31,6 +33,7 @@ object ProportionOfDelay extends App {
         calculationProportion(col("AIRLINE_DELAY"), sumDelay),
         calculationProportion(col("LATE_AIRCRAFT_DELAY"), sumDelay),
         calculationProportion(col("WEATHER_DELAY"), sumDelay))
+
     proportionOfDelayDF
   }
 }
